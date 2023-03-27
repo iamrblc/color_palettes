@@ -1,5 +1,20 @@
+"""
+This code creates a palette of the five most dominant colors for an image and
+saves it as a png file. The code uses the KMeans algorithm from scikit-learn to
+cluster the colors in the image. The code also
+uses OpenCV to read the images and create the palettes.
+"""
+
+#####################
+## IMPORT PACKAGES ##
+#####################
+
 import cv2, numpy as np
 from sklearn.cluster import KMeans
+
+################################
+## THE PALETTE MAKER FUNCTION ##
+################################
 
 def visualize_colors(cluster, centroids):
     # Get the number of different clusters, create histogram, and normalize
@@ -17,6 +32,10 @@ def visualize_colors(cluster, centroids):
         cv2.rectangle(palette, (0, int(start)), (100, int(end)), color.astype("uint8").tolist(), -1)
         start = end
     return palette
+
+####################
+## CREATE PALETTE ##
+####################
 
 # Load image and convert to a list of pixels
 image = cv2.imread('source_imgs/hello_garlic.png')
